@@ -51,7 +51,7 @@
     
     { "cat": "Media",    "name": "foobar2000 (Music Player)", "url": "https://www.foobar2000.org/files/foobar2000-x64_v2.24.6.exe", "file": "", "enabled": true },
     
-    { "cat": "Graphics", "name": "Remove.bg Desktop App", "url": "https://www.remove.bg/windows-mac-linux/download", "file": "", "enabled": true },
+
     
     { "cat": "System",   "name": "Rufus 4.9 (USB Boot Creator)", "url": "https://github.com/pbatard/rufus/releases/download/v4.9/rufus-4.9.exe", "file": "", "enabled": true }
 
