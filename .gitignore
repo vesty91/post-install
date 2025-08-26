@@ -7,6 +7,13 @@ logs/
 # Fichiers temporaires PowerShell
 *.tmp
 *.temp
+*.exe
+*.msi
+*.zip
+*.7z
+*.rar
+*.tar.gz
+*.tgz
 
 # Fichiers de cache
 *.cache
@@ -38,3 +45,17 @@ Desktop.ini
 # Fichiers de test temporaires
 TEST-*.ps1
 *test*.ps1
+
+# Fichiers d'installation téléchargés
+*.exe
+*.msi
+*.zip
+*.7z
+*.rar
+*.tar.gz
+*.tgz
+
+# Fichiers de développement temporaires
+*.ps1.bak
+*.json.bak
+*.md.bak

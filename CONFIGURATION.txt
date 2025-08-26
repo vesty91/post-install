@@ -1,0 +1,35 @@
+⚙️ CONFIGURATION DevSoftInstaller v3.0
+=====================================
+
+🎯 **FICHIERS PRINCIPAUX :**
+
+📱 **LANCER.bat** → Interface graphique complète
+🔇 **LANCER-SILENCIEUX.bat** → Mode silencieux (console)
+📜 **DevSoftInstaller-GUI.ps1** → Script principal PowerShell
+📦 **dev_installers_pack.json** → Liste des 32 packages
+
+📚 **DOCUMENTATION :**
+
+📖 **README.md** → Guide principal complet
+🚀 **DEMARRAGE-RAPIDE.txt** → Démarrage en 3 étapes
+📦 **GUIDE-DECOMPRESSION-AUTOMATIQUE.txt** → Guide décompression
+📊 **GUIDE-BARRES-PROGRESSION.txt** → Guide barres de progression
+📋 **RESUME-FINAL-CONSOLIDE.txt** → Résumé complet des fonctionnalités
+
+🔧 **CONFIGURATION :**
+
+✅ **Décompression automatique** : Activée par défaut
+✅ **Barres de progression** : Individuelles et globale
+✅ **Interface WPF** : Moderne et responsive
+✅ **Logs détaillés** : Dossier logs/
+✅ **Téléchargements** : Dossier DevInstallers/
+
+💡 **UTILISATION RAPIDE :**
+
+1. **Double-cliquez** sur `LANCER.bat`
+2. **Cliquez** sur "Charger JSON"
+3. **Configurez** la décompression automatique
+4. **Cliquez** sur "Télécharger Tout"
+5. **Observez** les barres de progression
+
+🎉 **Votre DevSoftInstaller est prêt à l'emploi !**
