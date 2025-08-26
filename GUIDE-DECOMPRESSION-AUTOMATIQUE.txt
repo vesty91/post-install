@@ -1,0 +1,154 @@
+🚀 GUIDE DÉCOMPRESSION AUTOMATIQUE - DevSoftInstaller
+======================================================
+
+🎯 **NOUVELLE FONCTIONNALITÉ AJOUTÉE :**
+Décompression automatique des archives après téléchargement
+
+✅ **FORMATS SUPPORTÉS :**
+- **ZIP** (.zip) → Décompression native PowerShell
+- **7-Zip** (.7z) → Via 7-Zip si installé
+- **RAR** (.rar) → Via 7-Zip si installé  
+- **TAR.GZ** (.tar.gz) → Via 7-Zip si installé
+- **TGZ** (.tgz) → Via 7-Zip si installé
+
+⚙️ **CONFIGURATION :**
+
+1. **Décompression automatique** (activée par défaut)
+   - ✅ Activée : Toutes les archives sont décompressées automatiquement
+   - ❌ Désactivée : Les archives restent telles quelles
+
+2. **Suppression des archives** (désactivée par défaut)
+   - ✅ Activée : Les archives sont supprimées après décompression
+   - ❌ Désactivée : Les archives sont conservées
+
+🔧 **FONCTIONNEMENT :**
+
+**Étape 1 : Téléchargement**
+- Le fichier est téléchargé normalement
+- Statut : "✓ Téléchargé"
+
+**Étape 2 : Détection automatique**
+- Le script détecte automatiquement le type d'archive
+- Vérifie si la décompression est activée
+
+**Étape 3 : Décompression**
+- Création d'un dossier avec le nom de l'archive
+- Extraction de tous les fichiers
+- Statut : "✓ Téléchargé + Décompressé"
+
+**Étape 4 : Nettoyage (optionnel)**
+- Suppression de l'archive si configuré
+- Conservation des fichiers extraits
+
+📁 **STRUCTURE DES DOSSIERS :**
+
+**AVANT décompression :**
+```
+C:\DevInstallers\
+├── gradle-8.9-bin.zip
+├── python-3.12.5-amd64.exe
+└── ...
+```
+
+**APRÈS décompression :**
+```
+C:\DevInstallers\
+├── gradle-8.9-bin\          ← Dossier créé automatiquement
+│   ├── bin\
+│   ├── docs\
+│   └── ...
+├── gradle-8.9-bin.zip       ← Archive conservée (si configuré)
+├── python-3.12.5-amd64.exe
+└── ...
+```
+
+🎛️ **CONTROLES DANS L'INTERFACE :**
+
+✅ **CheckBox "Décompression automatique"**
+- Activé par défaut
+- Décompresse automatiquement toutes les archives
+
+✅ **CheckBox "Supprimer archives après décompression"**
+- Désactivé par défaut
+- Supprime les archives après extraction réussie
+
+📊 **EXEMPLES D'UTILISATION :**
+
+**Scénario 1 : Décompression + Conservation**
+- ✅ Décompression automatique : Activée
+- ❌ Suppression archives : Désactivée
+- **Résultat** : Fichiers extraits + archives conservées
+
+**Scénario 2 : Décompression + Nettoyage**
+- ✅ Décompression automatique : Activée  
+- ✅ Suppression archives : Activée
+- **Résultat** : Fichiers extraits + archives supprimées
+
+**Scénario 3 : Pas de décompression**
+- ❌ Décompression automatique : Désactivée
+- **Résultat** : Archives téléchargées telles quelles
+
+🔍 **DÉTECTION INTELLIGENTE :**
+
+Le script détecte automatiquement :
+- **Extensions d'archives** (.zip, .7z, .rar, .tar.gz, .tgz)
+- **Disponibilité de 7-Zip** pour les formats avancés
+- **Compatibilité PowerShell** pour les formats ZIP
+
+⚠️ **REQUIS ET LIMITATIONS :**
+
+**Requis :**
+- PowerShell 5.1+ (pour Expand-Archive)
+- 7-Zip (optionnel, pour formats avancés)
+
+**Limitations :**
+- Formats non supportés : .iso, .dmg, .pkg
+- Archives corrompues : Gestion d'erreur avec logs
+- Espace disque : Double espace temporaire pendant extraction
+
+📝 **LOGS ET DIAGNOSTIC :**
+
+**Logs de décompression :**
+```
+[2025-08-26 15:30:45] [INFO] Démarrage de la décompression automatique pour: Gradle 8.9
+[2025-08-26 15:30:46] [INFO] Archive ZIP décompressée vers: C:\DevInstallers\gradle-8.9-bin
+[2025-08-26 15:30:47] [INFO] Décompression réussie pour: Gradle 8.9
+```
+
+**Gestion d'erreurs :**
+```
+[2025-08-26 15:30:45] [WARNING] 7-Zip non trouvé, impossible de décompresser: archive.7z
+[2025-08-26 15:30:46] [ERROR] Erreur lors de la décompression: Espace disque insuffisant
+```
+
+🚀 **AVANTAGES :**
+
+✅ **Gain de temps** : Plus besoin de décompresser manuellement
+✅ **Organisation automatique** : Dossiers créés automatiquement
+✅ **Flexibilité** : Configuration en temps réel via l'interface
+✅ **Robustesse** : Gestion d'erreurs et logs détaillés
+✅ **Compatibilité** : Support de nombreux formats d'archives
+
+💡 **CONSEILS D'UTILISATION :**
+
+1. **Gardez 7-Zip installé** pour le support des formats avancés
+2. **Activez la suppression** si vous voulez économiser l'espace disque
+3. **Surveillez les logs** pour diagnostiquer les problèmes
+4. **Vérifiez l'espace disque** avant les gros téléchargements
+
+🎯 **CONCLUSION :**
+
+**Votre DevSoftInstaller est maintenant encore plus intelligent !**
+
+- 🆕 **Décompression automatique** intégrée
+- 🎛️ **Configuration flexible** via l'interface
+- 📁 **Organisation automatique** des fichiers
+- 🔍 **Détection intelligente** des formats
+- 📊 **Logs détaillés** pour le diagnostic
+
+**Lancez `LANCER.bat` et profitez de la décompression automatique !** 🎉
+
+---
+📝 **Note** : Cette fonctionnalité est rétrocompatible et n'affecte pas
+les téléchargements existants. Tous les paramètres sont configurables
+en temps réel via l'interface graphique.

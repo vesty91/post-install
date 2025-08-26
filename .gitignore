@@ -1,0 +1,40 @@
+# DevSoftInstaller - Fichiers à ignorer
+
+# Dossiers de téléchargement
+DevInstallers/
+logs/
+
+# Fichiers temporaires PowerShell
+*.tmp
+*.temp
+
+# Fichiers de cache
+*.cache
+
+# Fichiers de verrouillage
+*.lock
+
+# Fichiers de configuration utilisateur
+*.user
+*.suo
+
+# Fichiers de build
+build/
+dist/
+out/
+
+# Fichiers de logs
+*.log
+
+# Fichiers système Windows
+Thumbs.db
+Desktop.ini
+
+# Fichiers de sauvegarde
+*.bak
+*.backup
+*~
+
+# Fichiers de test temporaires
+TEST-*.ps1
+*test*.ps1

@@ -1,0 +1,60 @@
+{
+  "outDir": "C:\\DevInstallers",
+  "packages": [
+    { "cat": "Browsers", "name": "Google Chrome Enterprise x64", "url": "https://dl.google.com/dl/chrome/install/googlechromestandaloneenterprise64.msi", "file": "", "enabled": true },
+    { "cat": "Browsers", "name": "Mozilla Firefox FR x64 (latest)", "url": "https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=fr", "file": "", "enabled": true },
+    { "cat": "Browsers", "name": "Firefox Developer Edition", "url": "https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=win64&lang=en-US", "file": "", "enabled": true },
+    
+    { "cat": "Editors",  "name": "Visual Studio Code (User x64 stable)", "url": "https://update.code.visualstudio.com/latest/win32-x64-user/stable", "file": "", "enabled": true },
+    { "cat": "Editors",  "name": "Notepad++ x64 (latest)", "url": "https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.6.4/npp.8.6.4.Installer.x64.exe", "file": "", "enabled": true },
+    { "cat": "Editors",  "name": "JetBrains Toolbox", "url": "https://download.jetbrains.com/toolbox/jetbrains-toolbox-2.8.1.52155.exe?_gl=1*1meays*_gcl_au*NDg3OTMxOTQ5LjE3NTYxNzAwMTc.*FPAU*NDg3OTMxOTQ5LjE3NTYxNzAwMTc.*_ga*MTAzNjA0MTg2LjE3NTYxNzAwMTc.*_ga_9J976DJZ68*czE3NTYxNzAwMTckbzEkZzEkdDE3NTYxNzAxMzAkajU5JGwwJGgw", "file": "", "enabled": true },
+
+    
+    { "cat": "Basics",   "name": "7-Zip x64 24.08", "url": "https://www.7-zip.org/a/7z2408-x64.exe", "file": "7zip_24.08_x64.exe", "enabled": true },
+    { "cat": "Basics",   "name": "PowerShell 7 (latest)", "url": "https://github.com/PowerShell/PowerShell/releases/download/v7.4.0/PowerShell-7.4.0-win-x64.msi", "file": "", "enabled": true },
+    { "cat": "Basics",   "name": "Windows Terminal (latest)", "url": "https://github.com/microsoft/terminal/releases/download/v1.19.10302.0/Microsoft.WindowsTerminal_1.19.10302.0_8wekyb3d8bbwe.msixbundle", "file": "", "enabled": true },
+    { "cat": "Basics",   "name": "PowerToys (latest)", "url": "https://github.com/microsoft/PowerToys/releases/download/v0.93.0/PowerToysUserSetup-0.93.0-x64.exe", "file": "", "enabled": true },
+    
+    { "cat": "VCS",      "name": "Git for Windows (latest x64)", "url": "https://github.com/git-for-windows/git/releases/download/v2.44.0.windows.1/Git-2.44.0-64-bit.exe", "file": "", "enabled": true },
+    { "cat": "VCS",      "name": "GitHub CLI (gh)", "url": "https://github.com/cli/cli/releases/download/v2.40.1/gh_2.40.1_windows_amd64.msi", "file": "", "enabled": true },
+    
+    { "cat": "Web",      "name": "Node.js LTS", "url": "https://nodejs.org/dist/v20.11.1/node-v20.11.1-x64.msi", "file": "", "enabled": true },
+    { "cat": "Web",      "name": "pnpm (via npm)", "url": "https://registry.npmjs.org/pnpm/-/pnpm-8.15.4.tgz", "file": "", "enabled": true },
+    { "cat": "Web",      "name": "Yarn (via npm)", "url": "https://registry.npmjs.org/yarn/-/yarn-1.22.22.tgz", "file": "", "enabled": true },
+    
+    { "cat": "Python",   "name": "Python 3.12.5 x64", "url": "https://www.python.org/ftp/python/3.12.5/python-3.12.5-amd64.exe", "file": "python-3.12.5-amd64.exe", "enabled": true },
+    { "cat": "Python",   "name": "Anaconda (Python + Data Science)", "url": "https://repo.anaconda.com/archive/Anaconda3-2024.02-1-Windows-x86_64.exe", "file": "", "enabled": true },
+    
+    { "cat": ".NET",     "name": ".NET SDK 8.0", "url": "https://dot.net/v1/dotnet-install.ps1", "file": "dotnet-install.ps1", "enabled": true },
+    { "cat": ".NET",     "name": ".NET install script (PowerShell)", "url": "https://dot.net/v1/dotnet-install.ps1", "file": "dotnet-install.ps1", "enabled": true },
+    
+    { "cat": "Java",     "name": "Microsoft OpenJDK 21 x64", "url": "https://aka.ms/download-jdk/microsoft-jdk-21-windows-x64.msi", "file": "", "enabled": true },
+
+    { "cat": "Java",     "name": "Gradle 8.9", "url": "https://services.gradle.org/distributions/gradle-8.9-bin.zip", "file": "gradle-8.9-bin.zip", "enabled": true },
+    
+    { "cat": "DevOps",   "name": "Docker Desktop (x64)", "url": "https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe", "file": "DockerDesktopInstaller.exe", "enabled": true },
+    { "cat": "DevOps",   "name": "Kubernetes CLI (kubectl)", "url": "https://dl.k8s.io/release/v1.29.0/bin/windows/amd64/kubectl.exe", "file": "", "enabled": true },
+    { "cat": "DevOps",   "name": "WSL2 + Ubuntu", "url": "https://aka.ms/wsl-ubuntu-2004", "file": "", "enabled": true },
+    
+    { "cat": "DB",       "name": "DBeaver CE (latest)", "url": "https://dbeaver.io/files/dbeaver-ce-latest-x86_64-setup.exe", "file": "", "enabled": true },
+    { "cat": "DB",       "name": "MongoDB Compass (latest)", "url": "https://downloads.mongodb.com/compass/mongodb-compass-1.40.4-win32-x64.exe", "file": "", "enabled": true },
+    { "cat": "DB",       "name": "PostgreSQL (latest)", "url": "https://get.enterprisedb.com/postgresql/postgresql-16.2-1-windows-x64.exe", "file": "", "enabled": true },
+
+    
+    { "cat": "API",      "name": "Postman (latest x64)", "url": "https://dl.pstmn.io/download/latest/win64", "file": "", "enabled": true },
+    { "cat": "API",      "name": "Insomnia (alternative Postman)", "url": "https://github.com/Kong/insomnia/releases/download/core%408.6.1/Insomnia.Core-8.6.1.exe", "file": "", "enabled": true },
+    
+    { "cat": "VSBuild",  "name": "VS 2022 Build Tools bootstrapper", "url": "https://aka.ms/vs/17/release/vs_buildtools.exe", "file": "vs_buildtools.exe", "enabled": true },
+    
+    { "cat": "System",   "name": "CPU-Z (System Info)", "url": "https://download.cpuid.com/cpu-z/cpu-z_2.07-en.exe", "file": "", "enabled": true },
+
+    { "cat": "System",   "name": "MSI Afterburner (OC Tool)", "url": "https://download.msi.com/uti_exe/vga/MSIAfterburnerSetup.zip?__token__=exp=1756310644~acl=/*~hmac=ef67d3e77333180daaba57598d8a0f7dc5da3092f948afa1550222afd239532e", "file": "", "enabled": true },
+    
+    { "cat": "Media",    "name": "foobar2000 (Music Player)", "url": "https://www.foobar2000.org/files/foobar2000-x64_v2.24.6.exe", "file": "", "enabled": true },
+    
+    { "cat": "Graphics", "name": "Remove.bg Desktop App", "url": "https://www.remove.bg/windows-mac-linux/download", "file": "", "enabled": true },
+    
+    { "cat": "System",   "name": "Rufus 4.9 (USB Boot Creator)", "url": "https://github.com/pbatard/rufus/releases/download/v4.9/rufus-4.9.exe", "file": "", "enabled": true }
+
+  ]
+}
