@@ -26,7 +26,6 @@
     { "cat": "Python",   "name": "Anaconda (Python + Data Science)", "url": "https://repo.anaconda.com/archive/Anaconda3-2024.02-1-Windows-x86_64.exe", "file": "", "enabled": true },
     
     { "cat": ".NET",     "name": ".NET SDK 8.0", "url": "https://dot.net/v1/dotnet-install.ps1", "file": "dotnet-install.ps1", "enabled": true },
-    { "cat": ".NET",     "name": ".NET install script (PowerShell)", "url": "https://dot.net/v1/dotnet-install.ps1", "file": "dotnet-install.ps1", "enabled": true },
     
     { "cat": "Java",     "name": "Microsoft OpenJDK 21 x64", "url": "https://aka.ms/download-jdk/microsoft-jdk-21-windows-x64.msi", "file": "", "enabled": true },
 
