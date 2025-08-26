@@ -33,15 +33,15 @@
    - Mise à jour visuelle de l'interface en temps réel
    - Gestion des erreurs avec fallback
 
-📊 **PACKAGES INCLUS (32) :**
+📊 **PACKAGES INCLUS (35) :**
 
 🌐 **Navigateurs (3)** : Chrome, Firefox FR, Firefox Dev
-📝 **Éditeurs (2)** : VS Code, Notepad++, JetBrains Toolbox
+📝 **Éditeurs (3)** : VS Code, Notepad++, JetBrains Toolbox
 🔧 **Basics (4)** : 7-Zip, PowerShell 7, Windows Terminal, PowerToys
 📚 **VCS (2)** : Git for Windows, GitHub CLI
-🌍 **Web (1)** : Node.js LTS
+🌍 **Web (3)** : Node.js LTS, pnpm, Yarn
 🐍 **Python (2)** : Python 3.12.5, Anaconda
-⚙️ **.NET (1)** : .NET SDK 8.0
+⚙️ **.NET (2)** : .NET SDK 8.0, .NET install script
 ☕ **Java (2)** : OpenJDK 21, Gradle 8.9
 🐳 **DevOps (3)** : Docker Desktop, kubectl, WSL2
 🗄️ **DB (3)** : DBeaver CE, MongoDB Compass, PostgreSQL
@@ -56,7 +56,7 @@
 ```
 DevSoftInstaller_Pack/
 ├── DevSoftInstaller-GUI.ps1      # Script principal complet
-├── dev_installers_pack.json      # 32 packages configurés
+├── dev_installers_pack.json      # 35 packages configurés
 ├── LANCER.bat                    # Lanceur interface graphique
 ├── LANCER-SILENCIEUX.bat        # Lanceur mode silencieux
 ├── README.md                     # Documentation principale
@@ -107,7 +107,7 @@ DevSoftInstaller_Pack/
 - 🆕 **Décompression automatique** intégrée et configurable
 - 📊 **Barres de progression** individuelles et globale en temps réel
 - 🎛️ **Interface avancée** avec contrôles en temps réel
-- 📦 **32 packages** d'outils de développement et utilitaires
+- 📦 **35 packages** d'outils de développement et utilitaires
 - 🔧 **Gestion intelligente** des archives et formats
 - 📊 **Logs détaillés** pour le diagnostic et le suivi
 - 🚀 **Performance optimisée** avec URLs corrigées

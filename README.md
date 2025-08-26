@@ -8,7 +8,7 @@ DevSoftInstaller est un gestionnaire d'installeurs graphique pour Windows qui pe
 
 - 🖥️ **Interface graphique WPF** moderne et intuitive
 - 📦 **Gestion JSON** des packages avec catégorisation
-- 🚀 **Téléchargement automatique** de 32+ outils de développement
+- 🚀 **Téléchargement automatique** de 35+ outils de développement
 - 📊 **Statistiques en temps réel** et barre de progression
 - 🔄 **Rafraîchissement automatique** des statuts
 - 📁 **Gestion des dossiers** et logs intégrée

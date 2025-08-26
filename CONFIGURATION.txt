@@ -6,7 +6,7 @@
 📱 **LANCER.bat** → Interface graphique complète
 🔇 **LANCER-SILENCIEUX.bat** → Mode silencieux (console)
 📜 **DevSoftInstaller-GUI.ps1** → Script principal PowerShell
-📦 **dev_installers_pack.json** → Liste des 32 packages
+📦 **dev_installers_pack.json** → Liste des 35 packages
 
 📚 **DOCUMENTATION :**
 
