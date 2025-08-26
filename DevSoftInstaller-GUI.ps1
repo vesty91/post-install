@@ -117,18 +117,30 @@ function Download-FileWithProgress {
     }
 }
 
-# Fonction de décompression automatique des archives
+# Fonction de décompression automatique des archives avec organisation par catégorie
 function Extract-Archive {
-    param($FilePath, $PackageName)
+    param($FilePath, $PackageName, $PackageCategory)
     
     try {
         $FileInfo = Get-Item $FilePath
         $Extension = $FileInfo.Extension.ToLower()
         $FileName = $FileInfo.BaseName
         $DirPath = $FileInfo.DirectoryName
-        $ExtractPath = Join-Path $DirPath $FileName
         
-        Write-Log "Décompression automatique de: $($FileInfo.Name)"
+        # Créer le dossier de catégorie
+        $CategoryDir = Join-Path $DirPath $PackageCategory
+        if (-not (Test-Path $CategoryDir)) {
+            New-Item -ItemType Directory -Path $CategoryDir -Force | Out-Null
+            Write-Log "Dossier de catégorie créé: $CategoryDir"
+        }
+        
+        # Créer le dossier spécifique au package dans la catégorie
+        $ExtractPath = Join-Path $CategoryDir $FileName
+        if (-not (Test-Path $ExtractPath)) {
+            New-Item -ItemType Directory -Path $ExtractPath -Force | Out-Null
+        }
+        
+        Write-Log "Décompression automatique de: $($FileInfo.Name) vers $CategoryDir\$FileName"
         
         switch ($Extension) {
             ".zip" {
@@ -512,7 +524,7 @@ $DownloadAllButton.Add_Click({
                         $StatusText.Text = "Décompression automatique de $($Package.name)..."
                         Write-Log "Démarrage de la décompression automatique pour: $($Package.name)"
                         
-                        if (Extract-Archive -FilePath $OutFile -PackageName $Package.name) {
+                        if (Extract-Archive -FilePath $OutFile -PackageName $Package.name -PackageCategory $Package.cat) {
                             $Package.StatusText = "✓ Téléchargé + Décompressé"
                             Write-Log "Décompression réussie pour: $($Package.name)"
                         } else {
@@ -628,7 +640,7 @@ if ($Quiet) {
                     $Extension = (Get-Item $OutFile).Extension.ToLower()
                     if ($Extension -match '\.(zip|7z|rar|tar\.gz|tgz)$') {
                         Write-Log "Démarrage de la décompression automatique pour: $($Package.name)"
-                        if (Extract-Archive -FilePath $OutFile -PackageName $Package.name) {
+                        if (Extract-Archive -FilePath $OutFile -PackageName $Package.name -PackageCategory $Package.cat) {
                             Write-Log "Décompression réussie pour: $($Package.name)"
                         } else {
                             Write-Log "Décompression échouée pour: $($Package.name)" "WARNING"
