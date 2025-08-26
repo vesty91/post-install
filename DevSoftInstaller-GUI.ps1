@@ -17,6 +17,7 @@ $Config = @{
     MaxConcurrentDownloads = 3
     AutoExtract = $true  # Décompression automatique des archives
     DeleteArchives = $false  # Supprimer les archives après décompression
+    AutoOrganize = $true  # Organisation automatique par catégorie
 }
 
 # Créer les dossiers nécessaires
@@ -113,6 +114,42 @@ function Download-FileWithProgress {
         
     } catch {
         Write-Log "Erreur lors du téléchargement: $($_.Exception.Message)" "ERROR"
+        return $false
+    }
+}
+
+# Fonction d'organisation totale des fichiers par catégorie
+function Organize-FileByCategory {
+    param($FilePath, $PackageName, $PackageCategory)
+    
+    try {
+        $FileInfo = Get-Item $FilePath
+        $Extension = $FileInfo.Extension.ToLower()
+        $FileName = $FileInfo.BaseName
+        $DirPath = $FileInfo.DirectoryName
+        
+        # Créer le dossier de catégorie
+        $CategoryDir = Join-Path $DirPath $PackageCategory
+        if (-not (Test-Path $CategoryDir)) {
+            New-Item -ItemType Directory -Path $CategoryDir -Force | Out-Null
+            Write-Log "Dossier de catégorie créé: $CategoryDir"
+        }
+        
+        # Créer le dossier spécifique au package dans la catégorie
+        $PackageDir = Join-Path $CategoryDir $FileName
+        if (-not (Test-Path $PackageDir)) {
+            New-Item -ItemType Directory -Path $PackageDir -Force | Out-Null
+        }
+        
+        # Déplacer le fichier téléchargé vers le dossier organisé
+        $NewFilePath = Join-Path $PackageDir $FileInfo.Name
+        Move-Item -Path $FilePath -Destination $NewFilePath -Force
+        Write-Log "Fichier organisé: $($FileInfo.Name) vers $CategoryDir\$FileName\$($FileInfo.Name)"
+        
+        return $NewFilePath
+        
+    } catch {
+        Write-Log "Erreur lors de l'organisation de $FilePath : $($_.Exception.Message)" "ERROR"
         return $false
     }
 }
@@ -320,10 +357,12 @@ $Xaml = @"
                 <TextBlock x:Name="ConfigText" Text="Dossier de sortie: C:\DevInstallers" 
                            TextWrapping="Wrap" FontSize="12"/>
                 
-                <CheckBox x:Name="AutoExtractCheckBox" Content="Décompression automatique" 
-                          IsChecked="True" Margin="0,10,0,5"/>
+                                <CheckBox x:Name="AutoExtractCheckBox" Content="Décompression automatique" 
+                           IsChecked="True" Margin="0,10,0,5"/>
+                <CheckBox x:Name="AutoOrganizeCheckBox" Content="Organisation automatique par catégorie" 
+                           IsChecked="True" Margin="0,0,0,5"/>
                 <CheckBox x:Name="DeleteArchivesCheckBox" Content="Supprimer archives après décompression" 
-                          IsChecked="False" Margin="0,0,0,10"/>
+                           IsChecked="False" Margin="0,0,0,10"/>
                 
                 <Separator Margin="0,10,0,10"/>
                 
@@ -372,6 +411,7 @@ $ConfigText = $Window.FindName("ConfigText")
 $StatsText = $Window.FindName("StatsText")
 $LogPathText = $Window.FindName("LogPathText")
 $AutoExtractCheckBox = $Window.FindName("AutoExtractCheckBox")
+$AutoOrganizeCheckBox = $Window.FindName("AutoOrganizeCheckBox")
 $DeleteArchivesCheckBox = $Window.FindName("DeleteArchivesCheckBox")
 
 # Variables globales
@@ -517,21 +557,37 @@ $DownloadAllButton.Add_Click({
                 $SuccessCount++
                 Write-Log "Téléchargement réussi: $($Package.name)"
                 
-                # Décompression automatique si activée
-                if ($Config.AutoExtract) {
+                # Organisation automatique par catégorie (TOUS les fichiers)
+                if ($Config.AutoOrganize) {
+                    $StatusText.Text = "Organisation automatique de $($Package.name)..."
+                    Write-Log "Démarrage de l'organisation automatique pour: $($Package.name)"
+                    
                     $Extension = (Get-Item $OutFile).Extension.ToLower()
-                    if ($Extension -match '\.(zip|7z|rar|tar\.gz|tgz)$') {
-                        $StatusText.Text = "Décompression automatique de $($Package.name)..."
-                        Write-Log "Démarrage de la décompression automatique pour: $($Package.name)"
-                        
+                    $IsArchive = $Extension -match '\.(zip|7z|rar|tar\.gz|tgz)$'
+                    
+                    if ($IsArchive -and $Config.AutoExtract) {
+                        # Pour les archives : décompresser ET organiser
                         if (Extract-Archive -FilePath $OutFile -PackageName $Package.name -PackageCategory $Package.cat) {
-                            $Package.StatusText = "✓ Téléchargé + Décompressé"
-                            Write-Log "Décompression réussie pour: $($Package.name)"
+                            $Package.StatusText = "✓ Téléchargé + Décompressé + Organisé"
+                            Write-Log "Archive décompressée et organisée pour: $($Package.name)"
                         } else {
                             $Package.StatusText = "✓ Téléchargé (Décompression échouée)"
                             Write-Log "Décompression échouée pour: $($Package.name)" "WARNING"
                         }
+                    } else {
+                        # Pour tous les autres fichiers : organiser directement
+                        if (Organize-FileByCategory -FilePath $OutFile -PackageName $Package.name -PackageCategory $Package.cat) {
+                            $Package.StatusText = "✓ Téléchargé + Organisé"
+                            Write-Log "Fichier organisé pour: $($Package.name)"
+                        } else {
+                            $Package.StatusText = "✓ Téléchargé (Organisation échouée)"
+                            Write-Log "Organisation échouée pour: $($Package.name)" "WARNING"
+                        }
                     }
+                } else {
+                    # Organisation désactivée
+                    $Package.StatusText = "✓ Téléchargé"
+                    Write-Log "Organisation automatique désactivée pour: $($Package.name)"
                 }
             } else {
                 $Package.status = "Erreur"
@@ -598,6 +654,16 @@ $AutoExtractCheckBox.Add_Unchecked({
     Write-Log "Décompression automatique désactivée"
 })
 
+$AutoOrganizeCheckBox.Add_Checked({
+    $Config.AutoOrganize = $true
+    Write-Log "Organisation automatique par catégorie activée"
+})
+
+$AutoOrganizeCheckBox.Add_Unchecked({
+    $Config.AutoOrganize = $false
+    Write-Log "Organisation automatique par catégorie désactivée"
+})
+
 $DeleteArchivesCheckBox.Add_Checked({
     $Config.DeleteArchives = $true
     Write-Log "Suppression des archives activée"
@@ -615,7 +681,7 @@ $LogPathText.Add_MouseLeftButtonDown({
 })
 
 # Mise à jour de l'interface
-$ConfigText.Text = "Dossier de sortie: $($Config.OutDir)`nDossier de logs: $($Config.LogDir)`nDécompression auto: $($Config.AutoExtract)`nSuppression archives: $($Config.DeleteArchives)"
+$ConfigText.Text = "Dossier de sortie: $($Config.OutDir)`nDossier de logs: $($Config.LogDir)`nDécompression auto: $($Config.AutoExtract)`nOrganisation auto: $($Config.AutoOrganize)`nSuppression archives: $($Config.DeleteArchives)"
 $StatusText.Text = "Prêt - Chargez un pack JSON"
 
 # Mode silencieux
@@ -635,17 +701,30 @@ if ($Quiet) {
                 Invoke-WebRequest -Uri $Package.url -OutFile $OutFile
                 Write-Log "Téléchargement terminé: $OutFile"
                 
-                # Décompression automatique si activée
-                if ($Config.AutoExtract) {
+                # Organisation automatique par catégorie (TOUS les fichiers)
+                if ($Config.AutoOrganize) {
+                    Write-Log "Démarrage de l'organisation automatique pour: $($Package.name)"
+                    
                     $Extension = (Get-Item $OutFile).Extension.ToLower()
-                    if ($Extension -match '\.(zip|7z|rar|tar\.gz|tgz)$') {
-                        Write-Log "Démarrage de la décompression automatique pour: $($Package.name)"
+                    $IsArchive = $Extension -match '\.(zip|7z|rar|tar\.gz|tgz)$'
+                    
+                    if ($IsArchive -and $Config.AutoExtract) {
+                        # Pour les archives : décompresser ET organiser
                         if (Extract-Archive -FilePath $OutFile -PackageName $Package.name -PackageCategory $Package.cat) {
-                            Write-Log "Décompression réussie pour: $($Package.name)"
+                            Write-Log "Archive décompressée et organisée pour: $($Package.name)"
                         } else {
                             Write-Log "Décompression échouée pour: $($Package.name)" "WARNING"
                         }
+                    } else {
+                        # Pour tous les autres fichiers : organiser directement
+                        if (Organize-FileByCategory -FilePath $OutFile -PackageName $Package.name -PackageCategory $Package.cat) {
+                            Write-Log "Fichier organisé pour: $($Package.name)"
+                        } else {
+                            Write-Log "Organisation échouée pour: $($Package.name)" "WARNING"
+                        }
                     }
+                } else {
+                    Write-Log "Organisation automatique désactivée pour: $($Package.name)"
                 }
             } catch {
                 Write-Log "Erreur lors du téléchargement de $($Package.name): $($_.Exception.Message)" "ERROR"
